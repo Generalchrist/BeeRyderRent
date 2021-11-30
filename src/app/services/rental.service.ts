@@ -12,7 +12,7 @@ export class RentalService {
 
   constructor(private httpclient:HttpClient) { }
 
-  getColors():Observable<RentalResponseModule>{
+  getRentals():Observable<RentalResponseModule>{
     return this.httpclient.get<RentalResponseModule>(this.apiUrl);
   }
 
