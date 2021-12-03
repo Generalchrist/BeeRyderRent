@@ -3,21 +3,21 @@
 </div> 
 
 
-<table *ngIf="dataLoaded==true"  class="table">
+<table *ngIf="dataLoaded==true"  class="table table-hover">
   <thead>
-    <tr>
+    <tr >
       <th>Car Id</th>
-      <th>Brand Name</th>
-      <th>Colour Name</th>
+      <th>Brand Id</th>
+      <th>Colour Id</th>
       <th>Model Year</th>
       <th>Daily Price</th>
       <th>Description</th>
     </tr>
   </thead>
-  <tr *ngFor="let car of cars">
-    <td>{{ car.carId }}</td>
-    <td>{{ car.brandName }}</td>
-    <td>{{ car.colorName }}</td>
+  <tr *ngFor="let car of cars" >
+    <td>{{ car.id }}</td>
+    <td>{{ car.brandId }}</td>
+    <td>{{ car.colorId }}</td>
     <td>{{ car.modelYear }}</td>
     <td>{{ car.dailyPrice }}</td>
     <td>{{ car.description }}</td>
