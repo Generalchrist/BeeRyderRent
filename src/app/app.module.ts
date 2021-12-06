@@ -10,7 +10,9 @@ import { CarComponent } from './components/car/car.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
 import {HttpClientModule} from '@angular/common/http';
-import { CarDetailComponent } from './components/car-detail/car-detail.component'
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { CarimageComponent } from './components/carimage/carimage.component';
+import { VatAddedPipe } from './pipes/vat-added.pipe'
 
 
 
@@ -23,7 +25,9 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
     CarComponent,
     RentalComponent,
     NaviComponent,
-    CarDetailComponent
+    CarDetailComponent,
+    CarimageComponent,
+    VatAddedPipe
   ],
   imports: [
     BrowserModule,
