@@ -3,16 +3,15 @@
   </div> 
   
   
-<ul class="list-group">
-  <li 
-  (click)="setCurrentBrand(brand)"
-  routerLink ="/cars/brand/{{brand.id}}"
-  *ngFor="let brand of brands" 
-  [class]="setCurrentBrandClass(brand)">
-        {{brand.name}}
-  </li>
-</ul>
+  <select class="form-select" aria-label="Disabled select example">
+    <option selected>Select Brand</option>
+    <option
+      *ngFor="let brand of brands"
+      routerLink="/cars/brand/{{ brand.id }}"
+  
+    >
+      {{brand.name}}
+    </option>
+  </select>
 
-<h5 *ngIf="currentBrand">
-  {{currentBrand.name}}
-</h5>
+

@@ -1,5 +1,5 @@
-import { ResponseModule } from "./ResponseModule";
+import { ResponseModel } from "./ResponseModel";
 
-export interface listResponseModel<T> extends ResponseModule{
+export interface listResponseModel<T> extends ResponseModel{
     data:T[]
 }

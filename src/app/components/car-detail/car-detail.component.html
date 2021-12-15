@@ -1,26 +1,52 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div> 
+
   
+
   
-  <table *ngIf="dataLoaded==true"  class="table">
-    <thead>
-      <tr>
-        <th>Car Id</th>
-        <th>Brand Name</th>
-        <th>Colour Name</th>
-        <th>Model Year</th>
-        <th>Daily Price</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tr *ngFor="let car of carDetails">
-      <td>{{ car.carId }}</td>
-      <td>{{ car.brandName }}</td>
-      <td>{{ car.colorName }}</td>
-      <td>{{ car.modelYear }}</td>
-      <td>{{ car.dailyPrice }}</td>
-      <td>{{ car.carDescription }}</td>
-    </tr>
-  </table>
-  
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="true" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-header"> 
+      <h5 class="card-title">{{carDetail.carDescription}}</h5>
+
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="">
+          <img src="assets\shaman.jpg" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <p class="card-text">mal şaman</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Brand : {{carDetail.brandName}}</li>
+          <li class="list-group-item">Color : {{carDetail.colorName}}</li>
+          <li class="list-group-item">Model Year : {{carDetail.modelYear}}</li>
+          <li class="list-group-item">Daily Price : {{carDetail.dailyPrice}}</li>
+
+        </ul>
+      </div>
+
+      <p></p>
+      <div class="d-grid gap-1 d-md-block text-center">
+        <button class="btn btn-success" type="button">Add to cart</button>
+        <div class="divider"></div>
+        <button class="btn btn-danger" type="button">Favorite ❤️</button>
+      </div>
+    </div>
+  </div>
+<p></p>
+  <div>
+    <app-car></app-car>
+  </div>
+    
