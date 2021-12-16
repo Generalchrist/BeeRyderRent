@@ -11,6 +11,7 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   dataLoaded = false;
+  filterText="";
 
   constructor(
     private carService: CarService,
@@ -22,7 +23,8 @@ export class CarComponent implements OnInit {
       if (params['brandId']) {
         this.getCarsByBrand(params['brandId']);
       }
-      if (params['colorId']) {
+
+      else if (params['colorId']) {
         this.getCarsByColor(params['colorId']);
       }
       else {
