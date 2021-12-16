@@ -9,7 +9,7 @@ import { CarDetailService } from 'src/app/services/car-detail.service';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  carDetails: CarDetail[] = [];
+  carDetails: CarDetail[];
   carDetail: CarDetail;
   dataLoaded = false;
 

@@ -8,25 +8,24 @@
 
 <div class="row">
   <div class="col" *ngFor="let car of cars">
-    <div class="card " style="width: 18rem;" routerLink="/cardetails/{{car.id}}">
+    <div class="card " style="width: 18rem;" >
       <div class="card-header">
         <h5 class="card-title">{{car.description}}</h5>
       </div>
       <img src="assets/shaman.jpg" class="card-img-top" >
-      <div class="card-body">
-        
+
+      <div class="card-body" routerLink="/cardetails/{{car.id}}">  
         <ul class="list-group list-group-flush"> 
           <li class="list-group-item">Daily Price : {{ car.dailyPrice | currency:'USD' }} </li>
           <li class="list-group-item">Model Year : {{ car.modelYear }} </li>
-          
         </ul>
-        <p></p>
+      </div>
+      <div class="card-footer">
         <div class="d-grid gap-1 d-md-block text-center">
           <button class="btn btn-success" type="button">Add to cart</button>
           <div class="divider"></div>
           <button class="btn btn-danger" type="button">Favorite ❤️</button>
         </div>
-
       </div>
     </div>
   </div>
