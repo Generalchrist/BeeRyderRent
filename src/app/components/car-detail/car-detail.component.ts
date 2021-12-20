@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/Car';
 import { CarDetail } from 'src/app/models/CarDetail';
 import { CarDetailService } from 'src/app/services/car-detail.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-car-detail',
@@ -15,7 +18,9 @@ export class CarDetailComponent implements OnInit {
 
   constructor(
     private carDetailService: CarDetailService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartService:CartService,
+    private toastrService:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,4 +46,5 @@ export class CarDetailComponent implements OnInit {
       this.carDetail = response.data;
     });
   }
+
 }
