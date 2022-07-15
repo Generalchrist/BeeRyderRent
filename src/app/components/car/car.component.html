@@ -6,9 +6,20 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
+<p-accordion [multiple]="true">
+  <p-accordionTab header="Header 1"  >
+      Content 1
+  </p-accordionTab>
+  <p-accordionTab header="Header 2">
+      Content 2
+  </p-accordionTab>
+  <p-accordionTab header="Header 3">
+      Content 3    
+  </p-accordionTab>
+</p-accordion>
 
 <div class="col-md-4">
-  <label for="filterText" class="form-label">Search</label>
+  <label for="filterText" class="form-label"></label>
   <input type="text" [(ngModel)]="filterText" 
   class="form-control" id="filterText"
    placeholder="Please enter the car name">
@@ -16,6 +27,9 @@
    '{{filterText}}' searched
   </p>
   </div>
+
+
+
 
 <div class="row">
   <div class="col" *ngFor="let car of cars | filterPipe:filterText">
@@ -43,4 +57,5 @@
   </div>
 
 </div>
+
 

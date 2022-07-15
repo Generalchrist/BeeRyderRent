@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/Car';
 import { CarDetail } from 'src/app/models/CarDetail';
+import { CarImage } from 'src/app/models/CarImage';
 import { CarDetailService } from 'src/app/services/car-detail.service';
+import { CarimageService } from 'src/app/services/carimage.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -15,15 +17,22 @@ export class CarDetailComponent implements OnInit {
   carDetails: CarDetail[];
   carDetail: CarDetail;
   dataLoaded = false;
+  carImages: CarImage[] = [];
+  
+
 
   constructor(
     private carDetailService: CarDetailService,
     private activatedRoute: ActivatedRoute,
     private cartService:CartService,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
   ) {}
 
   ngOnInit(): void {
+
+    
+
+
     this.activatedRoute.params.subscribe((params) => {
       if(params['carId']){
         this.getCarDetailsById(params['carId']);
@@ -44,7 +53,10 @@ export class CarDetailComponent implements OnInit {
   getCarDetailsById(id: number) {
     this.carDetailService.getCarDetailsById(id).subscribe((response) => {
       this.carDetail = response.data;
+      this.dataLoaded = true;
     });
   }
+
+
 
 }

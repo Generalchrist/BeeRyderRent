@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,11 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { SkeletonModule} from 'primeng/skeleton';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import {AccordionModule} from 'primeng/accordion';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +38,7 @@ import { ToastrModule } from 'ngx-toastr';
     CarimageComponent,
     FilterPipePipe,
     CartSummaryComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,6 +49,12 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    SkeletonModule,
+    CardModule,
+    ButtonModule,
+    AccordionModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

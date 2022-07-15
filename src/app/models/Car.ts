@@ -5,4 +5,7 @@ export interface Car{
     modelYear:number,
     dailyPrice:number,
     description:string
+    Model : String,
+    FindexScore : number,
+
 }

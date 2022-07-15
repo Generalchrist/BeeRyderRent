@@ -1,7 +1,7 @@
 export interface Rental{
     id: number,
     brandName:string,
-    customerName:string,
+    colorName:string,
     rentDate:Date,
     returnDate:Date
 }

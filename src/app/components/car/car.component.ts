@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/Car';
@@ -11,15 +12,19 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: Car[] = [];
   dataLoaded = false;
-  filterText="";
+  filterText = "";
+  cars: Car[] = [];
+
+  filterForm : FormGroup;
+  
 
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
     private toastrService:ToastrService,
-    private cartService:CartService
+    private cartService:CartService,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +42,26 @@ export class CarComponent implements OnInit {
     });
   }
 
-  getCars() {
+  createFilterOptions() {
+    this.filterForm = this.formBuilder.group({
+      brandId: [null],
+      colorId: [null],
+      minPrice: [null],
+      maxPrice: [null],
+      minModelYear: [null]
+    });
+  };
+
+  getCarsByFilters(){
+    this.carService.getCarsByFilters(this.filterForm.value).subscribe((response) => {
+      if(response.success){
+        this.cars = response.data;
+        this.dataLoaded = true;
+      }
+      
+    })
+  }
+  getCars(): void {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
@@ -63,7 +87,5 @@ export class CarComponent implements OnInit {
       this.cartService.addToCart(car);
       this.toastrService.success(car.description + " Added to Rental Cart")
     }
-    
-
   }
 }

@@ -2,7 +2,7 @@
   
 
   
-  <div class="card text-center">
+  <div *ngIf="dataLoaded" class="card text-center">
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
@@ -22,8 +22,9 @@
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="">
-          <img src="assets\shaman.jpg" alt="">
+        <div class="" >
+          <img src="assets\shaman.jpg" alt="" >
+          <app-carimage></app-carimage>
         </div>
       </div>
       <div class="row">
