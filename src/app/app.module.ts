@@ -14,7 +14,6 @@ import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
-import { CarimageComponent } from './components/carimage/carimage.component';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
@@ -23,6 +22,18 @@ import { SkeletonModule} from 'primeng/skeleton';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';
+import {DropdownModule} from 'primeng/dropdown';
+import {ListboxModule} from 'primeng/listbox';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { ApiImagesPipe } from './pipes/api-images.pipe';
+import {GalleriaModule} from 'primeng/galleria';
+import {DialogModule} from 'primeng/dialog';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { CarRentComponent } from './components/car-rent/car-rent.component';
+import {DataViewModule} from 'primeng/dataview';
+import { ChipModule } from 'primeng/chip';
+
+
 
 
 @NgModule({
@@ -35,9 +46,10 @@ import {AccordionModule} from 'primeng/accordion';
     RentalComponent,
     NaviComponent,
     CarDetailComponent,
-    CarimageComponent,
     FilterPipePipe,
     CartSummaryComponent,
+    ApiImagesPipe,
+    CarRentComponent,
     
   ],
   imports: [
@@ -54,7 +66,14 @@ import {AccordionModule} from 'primeng/accordion';
     CardModule,
     ButtonModule,
     AccordionModule,
-    
+    DropdownModule,
+    ListboxModule,
+    InputNumberModule,
+    GalleriaModule,
+    DialogModule,
+    DynamicDialogModule,
+    DataViewModule,
+    ChipModule
   ],
   providers: [],
   bootstrap: [AppComponent],

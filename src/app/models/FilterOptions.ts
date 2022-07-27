@@ -1,6 +1,6 @@
 export class FilterOptions{
-    brandId: number;
-    colorId: number;
+    brands: number[];
+    colors: number[];
     minPrice: number;
     maxPrice: number;
     minModelYear: number;

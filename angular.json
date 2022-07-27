@@ -24,7 +24,6 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-toastr/toastr.css",
               "src/styles.css",
               "node_modules/primeicons/primeicons.css",
@@ -39,7 +38,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -99,5 +98,7 @@
       }
     }
   },
-  "defaultProject": "recapproject"
+  "cli": {
+    "analytics": false
+  }
 }

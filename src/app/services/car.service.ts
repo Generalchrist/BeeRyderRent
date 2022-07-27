@@ -5,6 +5,8 @@ import { Car } from '../models/Car';
 import { listResponseModel } from '../models/listResponseModel';
 import { apiUrl } from './service-constants.service';
 import { FilterOptions } from '../models/FilterOptions';
+import { CarDetail } from '../models/CarDetail';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -27,13 +29,17 @@ export class CarService {
     let newPath = this.serviceUrl + '/getcarsbycolorid?colorid=' + id;
     return this.httpclient.get<listResponseModel<Car>>(newPath);
   }
-  getCarsByFilters(filterOptions : FilterOptions): Observable<listResponseModel<Car>> {
-    return this.httpclient.post<listResponseModel<Car>>(this.serviceUrl + '/getfilteredcars',filterOptions);
+  getCarsByFilters(filterOptions : FilterOptions): Observable<listResponseModel<CarDetail>> {
+    return this.httpclient.post<listResponseModel<CarDetail>>(this.serviceUrl + '/getfilteredcars',filterOptions);
   }
-
-
-
-
-
-
+  getCarsModelYears(): Observable<listResponseModel<number>> {
+    let newPath = this.serviceUrl + '/getcarsmodelyears';
+    return this.httpclient.get<listResponseModel<number>>(newPath);
+  }
+  getCarDetail(carId:number):Observable<SingleResponseModel<CarDetail>>{
+    return this.httpclient.get<SingleResponseModel<CarDetail>>(this.serviceUrl + "/getcardetaildto?id=" + carId)
+  }
+  getCarDetails():Observable<listResponseModel<CarDetail>>{
+    return this.httpclient.get<listResponseModel<CarDetail>>(this.serviceUrl + "/getcardetailsdto")
+  }
 }
