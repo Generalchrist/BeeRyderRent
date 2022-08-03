@@ -1,16 +1,13 @@
-.divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
+
+
+  .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
 }
 
-.parent {
-    border: 1px solid black;
-    margin: 1rem;
-  }
-  .child {
-    display: inline-block;
-    padding: 1rem 1rem;
-    vertical-align: middle;
-  }
-  
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 2px solid red;
+} 

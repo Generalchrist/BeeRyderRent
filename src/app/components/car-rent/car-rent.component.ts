@@ -3,8 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CreditCard } from 'src/app/models/CreditCard';
 import { Rental } from 'src/app/models/Rental';
+import { AuthService } from 'src/app/services/auth.service';
 import { RentalService } from 'src/app/services/rental.service';
+
 
 @Component({
   selector: 'app-car-rent',

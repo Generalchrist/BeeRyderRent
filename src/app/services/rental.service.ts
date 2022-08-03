@@ -4,28 +4,28 @@ import { Observable } from 'rxjs';
 import { CreditCard } from '../models/CreditCard';
 import { listResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/Rental';
+import { RentalDetail } from '../models/RentalDetail';
 import { ResponseModel } from '../models/ResponseModel';
+import { apiUrl } from './service-constants.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
 
-  apiUrl = "https://localhost:44371/api/rentals/getrentaldetaildto"
-  serviceUrl: string;
+  private serviceUrl = apiUrl + "rentals/"
 
-  constructor(private httpclient:HttpClient) { }
-
+  constructor(private httpClient: HttpClient) { }
 
   getRentalDetails(): Observable<listResponseModel<RentalDetail>>{
-    return this.httpclient.get<listResponseModel<RentalDetail>>(this.serviceUrl + "getdetails")
+    return this.httpClient.get<listResponseModel<RentalDetail>>(this.serviceUrl + "getrentaldetaildto")
   }
   getOccupiedDates(carId:number): Observable<listResponseModel<Date>>{
-    return this.httpclient.get<listResponseModel<Date>>(this.serviceUrl + "getoccupieddates?carId=" + carId )
+    return this.httpClient.get<listResponseModel<Date>>(this.serviceUrl + "getoccupieddates?carId=" + carId )
   }
 
   rent(rental:Rental, creditCard:CreditCard): Observable<ResponseModel>{
-    return this.httpclient.post<ResponseModel>(this.serviceUrl + "add", {rental, creditCard})
+    return this.httpClient.post<ResponseModel>(this.serviceUrl + "add", {rental, creditCard})
 
   }
 

@@ -15,6 +15,7 @@ import { CarRentComponent } from '../car-rent/car-rent.component';
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.css'],
+  providers: [DialogService]
 })
 export class CarDetailComponent implements OnInit {
   
