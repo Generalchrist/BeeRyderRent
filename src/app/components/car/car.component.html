@@ -1,127 +1,139 @@
-<app-navi></app-navi>
 
-<div
-  *ngIf="dataLoaded == false"
-  class="spinner-border text-success"
-  role="status"
->
-  <span class="visually-hidden">Loading...</span>
-</div>
-
-<div class="row" style="background-color: rgba(32,38,46,255);  padding-top: 5mm;">
-    
-
-  
-
-  <form [formGroup]="filterForm" class="col-md-2">
-    <p-accordion [multiple]="true" class="col-md-3">
-      <p-accordionTab header="Brands">
-        <p-listbox
-          [options]="brands"
-          placeholder="Select a Brand"
-          [metaKeySelection]="false"
-          [checkbox]="true"
-          [filter]="true"
-          [multiple]="true"
-          optionLabel="name"
-          [listStyle]="{ 'max-height': '250px' }"
-          formControlName="brands"
-        ></p-listbox>
-      </p-accordionTab>
-      <p-accordionTab header="Colors">
-        <p-listbox
-          [options]="colors"
-          placeholder="Select a Color"
-          [metaKeySelection]="false"
-          [checkbox]="true"
-          [filter]="true"
-          [multiple]="true"
-          optionLabel="name"
-          [listStyle]="{ 'max-height': '250px' }"
-          formControlName="colors"
-        ></p-listbox>
-      </p-accordionTab>
-      <p-accordionTab header="Model Year">
-        <p-listbox
-          [options]="modelYears"
-          placeholder="Select a Model Year"
-          [metaKeySelection]="false"
-          [checkbox]="true"
-          [filter]="true"
-          [multiple]="false"
-          [listStyle]="{ 'max-height': '250px' }"
-          formControlName="minModelYear"
-        ></p-listbox>
-      </p-accordionTab>
-      <p-accordionTab header="Price">
-        <div class="row">
-          <div class="col">
-            <label for="stacked">Min Price</label>
-            <p-inputNumber
-              [showButtons]="true"
-              inputId="stacked"
-              mode="currency"
-              currency="USD"
-              [min]="0"
-              [size]="12"
-              formControlName="minPrice"
-            ></p-inputNumber>
-          </div>
-          <div class="col">
-            <label for="stacked">Max Price</label>
-            <p-inputNumber
-              
-              [showButtons]="true"
-              inputId="stacked"
-              mode="currency"
-              currency="USD"
-              [min]="0"
-              [size]="12"
-              formControlName="maxPrice"
-            ></p-inputNumber>
-          </div>
-        </div>
-      </p-accordionTab>
-    </p-accordion>
-    <span class="p-buttonset" >
-      <button pButton pRipple label="Filter" (click)="getCarsByFilters()" icon="pi pi-search" class="p-button-outlined p-button-info " style="width: 60%"></button>
-      <button pButton pRipple label="Reset" (click)="reset()" icon="pi pi-trash" class="p-button-outlined p-button-info" style="width: 40%"></button>
-  </span>
-  </form>
-
-
-  <div class="col">
-
-    
-
-
-    <div class="col-md-8" style="margin-bottom:5mm">
-      <label for="filterText" class="form-label"></label>
-      <input type="text" [(ngModel)]="filterText" 
-      class="form-control" id="filterText"
-      placeholder="Please enter the car name">
-      <p class="alert alert-info" *ngIf="filterText.length>2"> 
-      '{{filterText}}' searched
-      </p>
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img src="assets\vettelim.jpg" class="d-block mx-lg-auto img-fluid rounded-5" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6 text-white">
+      <h1 class="display-5 fw-bold lh-1 mb-3 ">Responsive left-aligned hero with image</h1>
+      <p class="lead ">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
       </div>
-
-  <div class="row card-group" style="padding-right: 5ch;">
-    <div *ngFor="let car of cars | filterPipe:filterText" class="col-3" style="padding-bottom: 1%;">
-      <p-card header="{{car.brandName + ' ' + car.model}}" subheader="{{car.dailyPrice | currency}}" >
-        <ng-template pTemplate="header">
-          <img alt="Card" src="{{car.images[0].imagePath | apiImages}}" style="height: 9vw;  object-fit: cover;" >
-        </ng-template>
-        <p class="text-center">Rent a {{car.modelYear + " " + car.colorName + " " + car.brandName + " " + car.model}} car now.  </p>
-        <ng-template pTemplate="footer">
-            <button pButton pRipple  label="Details" 
-            class="p-button-outlined p-button-primary "
-            routerLink="/cardetails/{{car.carId}}"
-            style="display: block;margin:auto;width: 80%;"
-            ></button>
-        </ng-template>
-      </p-card>
     </div>
   </div>
+</div>
+
+<div class="row" >
+    
+
+  <div class="col-3" >
+
+    <form [formGroup]="filterForm" >
+      <p-accordion [multiple]="true" >
+        <p-accordionTab header="Brands">
+          <p-listbox
+            [options]="brands"
+            placeholder="Select a Brand"
+            [metaKeySelection]="false"
+            [checkbox]="true"
+            [filter]="true"
+            [multiple]="true"
+            optionLabel="name"
+            [listStyle]="{ 'max-height': '250px' }"
+            formControlName="brands"
+          ></p-listbox>
+        </p-accordionTab>
+        <p-accordionTab header="Colors">
+          <p-listbox
+            [options]="colors"
+            placeholder="Select a Color"
+            [metaKeySelection]="false"
+            [checkbox]="true"
+            [filter]="true"
+            [multiple]="true"
+            optionLabel="name"
+            [listStyle]="{ 'max-height': '250px' }"
+            formControlName="colors"
+          ></p-listbox>
+        </p-accordionTab>
+        <p-accordionTab header="Minimum Model Year">
+          <p-listbox
+            [options]="modelYears"
+            placeholder="Select a Model Year"
+            [metaKeySelection]="false"
+            [checkbox]="true"
+            [filter]="true"
+            [multiple]="false"
+            [listStyle]="{ 'max-height': '250px' }"
+            formControlName="minModelYear"
+          ></p-listbox>
+        </p-accordionTab>
+        <p-accordionTab header="Price">
+          <div class="row">
+            <div class="col">
+              <label for="stacked">Min Price</label>
+              <p-inputNumber
+                [showButtons]="true"
+                inputId="stacked"
+                mode="currency"
+                currency="USD"
+                [min]="0"
+                [size]="12"
+                formControlName="minPrice"
+              ></p-inputNumber>
+            </div>
+            <div class="col">
+              <label for="stacked">Max Price</label>
+              <p-inputNumber
+                
+                [showButtons]="true"
+                inputId="stacked"
+                mode="currency"
+                currency="USD"
+                [min]="0"
+                [size]="12"
+                formControlName="maxPrice"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+      <span class="p-buttonset" >
+        <button pButton pRipple label="Filter" (click)="getCarsByFilters()" icon="pi pi-search" class="p-button-outlined p-button-info " style="width: 60%"></button>
+        <button pButton pRipple label="Reset" (click)="reset()" icon="pi pi-trash" class="p-button-outlined p-button-info" style="width: 40%"></button>
+    </span>
+    </form>
+
     
   </div>
+
+  <div class="col-9" >
+    
+    
+    <div style="padding-bottom: 20px;" > 
+
+      <label for="filterText" class="form-label"></label>
+      <input type="text"  [(ngModel)]="filterText" 
+      class="form-control" id="filterText"
+      placeholder="Please enter the car name">
+      <p class="alert alert-warning" *ngIf="filterText.length>2"> 
+      '{{filterText}}' searched
+      </p>
+      
+    </div>
+
+
+      
+      <div class="row card-group" >
+        <div *ngFor="let car of cars | filterPipe:filterText" class="col-3" style="padding-bottom: 1%;">
+          <p-card header="{{car.brandName + ' ' + car.model}}" subheader="{{car.dailyPrice | currency}}" >
+            <ng-template pTemplate="header">
+              <img alt="Card" src="{{car.images[0].imagePath | apiImages}}" style="height: 9vw;  object-fit: cover;" >
+            </ng-template>
+            <p class="text-center" style="height: 40px;">Rent a {{car.modelYear + " " + car.colorName + " " + car.brandName + " " + car.model}} car now.  </p>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple  label="Details" 
+                class="p-button-outlined p-button-primary "
+                routerLink="/cardetails/{{car.carId}}"
+                style="display: block;margin:auto;width: 80%;"
+                ></button>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+      
+  </div>
 </div>
+
