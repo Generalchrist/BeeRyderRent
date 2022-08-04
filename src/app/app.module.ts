@@ -32,7 +32,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { CarRentComponent } from './components/car-rent/car-rent.component';
 import {DataViewModule} from 'primeng/dataview';
 import { ChipModule } from 'primeng/chip';
-
+import {FieldsetModule} from 'primeng/fieldset';
+import {DividerModule} from 'primeng/divider';
 
 
 
@@ -73,7 +74,9 @@ import { ChipModule } from 'primeng/chip';
     DialogModule,
     DynamicDialogModule,
     DataViewModule,
-    ChipModule
+    ChipModule,
+    FieldsetModule,
+    DividerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
