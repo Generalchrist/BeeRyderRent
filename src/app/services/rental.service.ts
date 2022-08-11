@@ -28,6 +28,8 @@ export class RentalService {
     return this.httpClient.post<ResponseModel>(this.serviceUrl + "add", {rental, creditCard})
 
   }
-
+  GetRentalDetailDtoByUserId(userId:number): Observable<listResponseModel<RentalDetail>>{
+    return this.httpClient.get<listResponseModel<RentalDetail>>(this.serviceUrl + "getrentaldetaildtobyuserid?userId=" + userId)
+  }
 
 }

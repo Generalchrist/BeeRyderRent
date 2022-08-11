@@ -34,6 +34,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {InputMaskModule} from 'primeng/inputmask';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -48,6 +49,7 @@ import { ErrorHandlerInterceptor } from './interceptors/error-handler.intercepto
     CarRentComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
     
   ],
   imports: [

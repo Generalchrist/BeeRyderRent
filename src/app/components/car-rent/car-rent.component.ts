@@ -45,7 +45,6 @@ export class CarRentComponent implements OnInit {
     private authService: AuthService,
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
-    private customerService:CustomerService
   ) { }
 
   ngOnInit(): void {
