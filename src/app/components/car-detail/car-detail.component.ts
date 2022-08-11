@@ -7,7 +7,6 @@ import { CarDetail } from 'src/app/models/CarDetail';
 import { CarImage } from 'src/app/models/CarImage';
 import { CarService } from 'src/app/services/car.service';
 import { CarimageService } from 'src/app/services/carimage.service';
-import { CartService } from 'src/app/services/cart.service';
 import { backendUrl } from 'src/app/services/service-constants.service';
 import { CarRentComponent } from '../car-rent/car-rent.component';
 
@@ -34,7 +33,6 @@ export class CarDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private carService: CarService,
-    private cartService:CartService,
     private toastrService:ToastrService,
     private dialogueService:DialogService
     

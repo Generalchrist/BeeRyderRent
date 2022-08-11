@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Claims } from '../models/Claims';
+import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/RegisterModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
@@ -57,6 +58,27 @@ export class AuthService {
       });
   }
 
+  login(loginModel: LoginModel) {
+    this.httpClient.post<SingleResponseModel<TokenModel>>(this.serviceUrl + "login", loginModel).subscribe(
+      (res) => {
+        if (res.success) {
+          this.localStorageService.setItem('token', res.data.token);
+          this._isLoggedIn = true;
+          this.getClaims()
+          this.getTokenExp()
+          this.getIsAdmin()
+
+          this.toastrService.success("Login successful");
+          this.router.navigate(['/']);
+        }
+        else {
+          this.toastrService.error(res.message)
+        }
+      }
+    )
+  }
+
+
   get isLoggedIn() {
     if (this._isLoggedIn && this.tokenExp < Date.now() / 1000) {
       this.logout()
@@ -81,10 +103,10 @@ export class AuthService {
     let tokenAttributes = this.getTokenAttributes(token);
     if (tokenAttributes) {
       let claims: Claims = {
-        userId: tokenAttributes['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
-        email: tokenAttributes['email'],
-        fullName: tokenAttributes['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
-        roles: tokenAttributes['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+        userId: parseInt(tokenAttributes["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]),
+        email: tokenAttributes["email"],
+        fullName: tokenAttributes["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+        roles: tokenAttributes["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
       };
       this.claims = claims;
     }
@@ -122,5 +144,6 @@ export class AuthService {
     }
     return null;
   }
+
 
 }

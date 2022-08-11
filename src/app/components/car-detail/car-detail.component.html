@@ -1,78 +1,78 @@
-<div class="row">
-
-    <div id="carouselExampleInterval" class="carousel slide col-8 " data-bs-ride="carousel"  >
-        <div class="carousel-inner text-center" *ngFor="let item of currentCar.images" >
-                <img [src]="item.imagePath|  apiImages" class="img-fluid"  />
+<div *ngIf="dataLoaded">
+      <div class="row" >
+      
+          <div id="carouselExampleInterval" class="carousel slide col-8 " data-bs-ride="carousel"  >
+              <div class="carousel-inner text-center" *ngFor="let item of currentCar.images" >
+                      <img [src]="item.imagePath|  apiImages" class="img-fluid"  />
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+      
+      
+            <div class="col-4 text-start" >
+      
+              <p-card class="card text-center" > 
+      
+                      <img src="assets/logo.png" class="img-fluid px-3" />
+                  
+                  <p-divider align="left">
+                      <p-button [disabled]="true" label="Brand" styleClass="p-button-outlined"></p-button>
+                  </p-divider>
+                  <p>{{currentCar.brandName}}</p>
+                  
+                  <p-divider align="left">
+                      <p-button [disabled]="true" label="Color" styleClass="p-button-outlined"></p-button>
+                  </p-divider>
+          
+                  <p>{{currentCar.colorName}}</p>
+          
+                  <p-divider align="left">
+                      <p-button [disabled]="true" label="Model Year" styleClass="p-button-outlined"></p-button>
+                  </p-divider>
+              
+                  <p>{{currentCar.modelYear}}</p>
+              
+                  <p-divider align="left">
+                      <p-button [disabled]="true" label="Model" styleClass="p-button-outlined"></p-button>
+                  </p-divider>
+                 
+                  <p>{{currentCar.model}}</p>
+      
+                  <p-divider align="left">
+                      <p-button [disabled]="true" label="Daily Price" styleClass="p-button-outlined"></p-button>
+                  </p-divider>
+              
+                  <p>{{currentCar.dailyPrice | currency}}</p>
+      
+      
+                  </p-card>
+          
+              
+            </div>
+      </div>
+      
+      <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg text-white">
+          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-4 fw-bold lh-1">{{currentCar.modelYear + " " + currentCar.brandName + " " + currentCar.model}}</h1>
+            <p class="lead">{{currentCar.description}}</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold" (click)="rent(currentCar)">Rent</button>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4" routerLink="/">Continue Browsing</button>
+            </div>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
 
-
-      <div class="col-4 text-start" >
-
-        <p-card class="card text-center" > 
-
-                <img src="assets/logo.png" class="img-fluid px-3" />
-            
-            <p-divider align="left">
-                <p-button [disabled]="true" label="Brand" styleClass="p-button-outlined"></p-button>
-            </p-divider>
-            <p>{{currentCar.brandName}}</p>
-            
-            <p-divider align="left">
-                <p-button [disabled]="true" label="Color" styleClass="p-button-outlined"></p-button>
-            </p-divider>
-    
-            <p>{{currentCar.colorName}}</p>
-    
-            <p-divider align="left">
-                <p-button [disabled]="true" label="Model Year" styleClass="p-button-outlined"></p-button>
-            </p-divider>
-        
-            <p>{{currentCar.modelYear}}</p>
-        
-            <p-divider align="left">
-                <p-button [disabled]="true" label="Model" styleClass="p-button-outlined"></p-button>
-            </p-divider>
-           
-            <p>{{currentCar.model}}</p>
-
-            <p-divider align="left">
-                <p-button [disabled]="true" label="Daily Price" styleClass="p-button-outlined"></p-button>
-            </p-divider>
-        
-            <p>{{currentCar.dailyPrice | currency}}</p>
-
-
-            </p-card>
-    
-        
-      </div>
 </div>
 
-    
-  <div class="container my-5">
-    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg text-white">
-      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-        <h1 class="display-4 fw-bold lh-1">{{currentCar.modelYear + " " + currentCar.brandName + " " + currentCar.model}}</h1>
-        <p class="lead">{{currentCar.description}}</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold" (click)="rent(currentCar)">Rent</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4" routerLink="/">Continue Browsing</button>
-        </div>
-      </div>
-      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-          <img class="rounded-lg-3" src="bootstrap-docs.png" alt="" width="720">
-      </div>
-    </div>
-  </div>
 
 
 

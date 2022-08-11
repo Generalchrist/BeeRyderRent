@@ -10,7 +10,6 @@ import { Color } from 'src/app/models/Color';
 import { FilterOptions } from 'src/app/models/FilterOptions';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
-import { CartService } from 'src/app/services/cart.service';
 import { ColorService } from 'src/app/services/color.service';
 
 @Component({
@@ -35,7 +34,6 @@ export class CarComponent implements OnInit {
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
     private toastrService:ToastrService,
-    private cartService:CartService,
     private formBuilder: UntypedFormBuilder,
     private brandService: BrandService,
     private colorService:ColorService,
@@ -85,10 +83,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  addToCart(car:Car){
-      this.cartService.addToCart(car);
-      this.toastrService.success(car.description + " Added to Rental Cart")
-  }
   getColors(){
     this.colorService.getColors().subscribe((response)=>{
       this.colors = response.data;

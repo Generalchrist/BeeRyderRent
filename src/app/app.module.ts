@@ -6,17 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrandComponent } from './components/brand/brand.component';
-import { ColorComponent } from './components/color/color.component';
-import { CustomerComponent } from './components/customer/customer.component';
 import { CarComponent } from './components/car/car.component';
-import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
-import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
-
 import { ToastrModule } from 'ngx-toastr';
 import { SkeletonModule} from 'primeng/skeleton';
 import {CardModule} from 'primeng/card';
@@ -34,23 +28,26 @@ import {DataViewModule} from 'primeng/dataview';
 import { ChipModule } from 'primeng/chip';
 import {FieldsetModule} from 'primeng/fieldset';
 import {DividerModule} from 'primeng/divider';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import {CalendarModule} from 'primeng/calendar';
+import {InputMaskModule} from 'primeng/inputmask';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BrandComponent,
-    ColorComponent,
-    CustomerComponent,
     CarComponent,
-    RentalComponent,
     NaviComponent,
     CarDetailComponent,
     FilterPipePipe,
-    CartSummaryComponent,
     ApiImagesPipe,
     CarRentComponent,
+    LoginComponent,
+    RegisterComponent,
     
   ],
   imports: [
@@ -76,9 +73,14 @@ import {DividerModule} from 'primeng/divider';
     DataViewModule,
     ChipModule,
     FieldsetModule,
-    DividerModule
+    DividerModule,
+    CalendarModule,
+    InputMaskModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
