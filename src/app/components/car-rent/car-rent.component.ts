@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CreditCard } from 'src/app/models/CreditCard';
+import { Customer } from 'src/app/models/Customers';
 import { Rental } from 'src/app/models/Rental';
 import { AuthService } from 'src/app/services/auth.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { RentalService } from 'src/app/services/rental.service';
 
 
@@ -17,7 +19,9 @@ import { RentalService } from 'src/app/services/rental.service';
 export class CarRentComponent implements OnInit {
 
   rentDate: Date;
-  returnDate?: Date;
+  returnDate: Date = new Date;
+ 
+  customer : Customer;
 
   today: Date;
   maxDate: Date;
@@ -40,7 +44,8 @@ export class CarRentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     public config: DynamicDialogConfig,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private customerService:CustomerService
   ) { }
 
   ngOnInit(): void {
@@ -53,18 +58,20 @@ export class CarRentComponent implements OnInit {
     this.today = new Date();
     this.today.setHours(0, 0, 0, 0); //Reset todays time to midnight
 
-    this.maxDate = new Date()
-    this.maxDate.setDate(this.today.getDate() + 30)
+
+
+    this.maxDate = new Date();
+    this.maxDate.setDate(this.today.getDate() + 30);
 
     this.maxReturnDate = new Date(this.maxDate)
 
-    this.getOccupiedDates()
 
+    this.getOccupiedDates()
     this.createCreditCardForm()
   }
 
   getOccupiedDates() {
-    this.rentalService.getOccupiedDates(this.config.data.id).subscribe(result => {
+    this.rentalService.getOccupiedDates(this.config.data.carId).subscribe(result => {
       if (result.success) {
         this.invalidDates = result.data.map(d => new Date(d));
         this.invalidDates.push(this.today)
@@ -104,7 +111,6 @@ export class CarRentComponent implements OnInit {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       this.totalRentDays = diffDays + 1
       this.totalRentPrice = this.totalRentDays * this.config.data.dailyPrice
-      console.log(this.totalRentPrice)
     }
 
   }
@@ -129,12 +135,12 @@ export class CarRentComponent implements OnInit {
 
     let rental: Rental = {
       id: 0,
-      carId: parseInt(this.config.data.id),
+      carId: parseInt(this.config.data.carId),
       customerId: this.authService.claims.userId,
       rentDate: this.rentDate,
       returnDate: this.returnDate
     }
-
+    console.log(rental, card);
     this.rentalService.rent(rental, card).subscribe(result => {
       if (result.success) {
         this.toastrService.success(result.message)
@@ -151,7 +157,7 @@ export class CarRentComponent implements OnInit {
       cardHolderName: ["", [Validators.required]],
       date: ["", [Validators.required]],
       cvc: ["", [Validators.required]],
-      cardNumber: ["", [Validators.required]]
+      cardNumber: [, [Validators.required]]
     })
   }
 
