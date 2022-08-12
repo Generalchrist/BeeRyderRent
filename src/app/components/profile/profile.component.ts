@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RentalDetail } from 'src/app/models/RentalDetail';
 import { AuthService } from 'src/app/services/auth.service';
+import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -13,11 +14,14 @@ export class ProfileComponent implements OnInit {
 
   rentals : RentalDetail[];
 
+  user = this.authService.claims;
+
 
   constructor(
     private rentalService: RentalService,
     private authService: AuthService,
-    private customerService:CustomerService
+    private carservice :CarService,
+
     ) { }
 
   ngOnInit(): void {
@@ -31,6 +35,7 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  
 
 
 
